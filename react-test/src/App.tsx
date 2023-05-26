@@ -1,19 +1,45 @@
 import './index.css';
 
-import React, { JSX } from 'react';
+import React, { JSX, ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { AddPhone } from './pages/add-phone';
-import { Login } from './pages/login';
+import AddPhone from './pages/add-phone';
+import Home from './pages/home';
+import Login from './pages/login';
+
+interface IRoute {
+    path: string;
+    component: ReactElement;
+}
+
 function App(): JSX.Element {
+    const routes: IRoute[] = [
+        {
+            path: '/login',
+            component: <Login />,
+        },
+        {
+            path: '/',
+            component: <Home />,
+        },
+        {
+            path: '/add',
+            component: <AddPhone />,
+        },
+        {
+            path: '/edit',
+            component: <AddPhone />,
+        },
+    ];
     return (
         <div className="App">
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/add" element={<AddPhone />} />
-                <Route path="/edit" element={<AddPhone />} />
+                {routes.map((route, i) => {
+                    const { path, component } = route;
+
+                    return <Route key={i} path={path} element={component} />;
+                })}
             </Routes>
-            {/*<Login />*/}
         </div>
     );
 }

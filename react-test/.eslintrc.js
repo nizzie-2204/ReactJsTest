@@ -5,6 +5,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:react-hooks/recommended',
     ],
     rules: {
         '@typescript-eslint/explicit-module-boundary-types': 2,
@@ -13,6 +14,7 @@ module.exports = {
         'react-hooks/rules-of-hooks': 2,
         'simple-import-sort/imports': 2,
         'simple-import-sort/exports': 2,
+        'react-hooks/exhaustive-deps': 1,
     },
     env: {
         browser: true,

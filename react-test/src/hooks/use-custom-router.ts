@@ -4,6 +4,7 @@ interface IUseCustomRouter {
     toAddPage: () => void;
     toEditPage: () => void;
     toLoginPage: () => void;
+    toHomePage: () => void;
 }
 export const useCustomRouter = (): IUseCustomRouter => {
     const navigate = useNavigate();
@@ -20,9 +21,14 @@ export const useCustomRouter = (): IUseCustomRouter => {
         navigate('/edit');
     };
 
+    const toHomePage = () => {
+        navigate('/');
+    };
+
     return {
         toAddPage,
         toLoginPage,
         toEditPage,
+        toHomePage,
     };
 };
