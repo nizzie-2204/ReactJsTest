@@ -10,7 +10,7 @@ import { useCustomRouter } from '../hooks/use-custom-router';
 import { usePhoneManager } from '../manager/use-phone-manager';
 import { convertFileToBase64 } from '../utils/convert-file-to-base64';
 
-const AddPhone = (): JSX.Element => {
+const AddEditPhone = (): JSX.Element => {
     const { addPhone, editPhone } = usePhoneManager();
     const location = useLocation();
     const { toHomePage } = useCustomRouter();
@@ -175,4 +175,4 @@ const AddPhone = (): JSX.Element => {
     );
 };
 
-export default withAuthenticated(AddPhone);
+export default withAuthenticated(AddEditPhone);

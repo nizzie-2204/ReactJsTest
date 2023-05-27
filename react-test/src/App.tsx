@@ -3,7 +3,8 @@ import './index.css';
 import React, { JSX, ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import AddPhone from './pages/add-phone';
+import AddEditPhone from './pages/add-edit-phone';
+import { Error } from './pages/error';
 import Home from './pages/home';
 import Login from './pages/login';
 
@@ -24,11 +25,15 @@ function App(): JSX.Element {
         },
         {
             path: '/add',
-            component: <AddPhone />,
+            component: <AddEditPhone />,
         },
         {
             path: '/edit',
-            component: <AddPhone />,
+            component: <AddEditPhone />,
+        },
+        {
+            path: '*',
+            component: <Error />,
         },
     ];
     return (
