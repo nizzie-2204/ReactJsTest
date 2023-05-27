@@ -88,7 +88,7 @@ const Home = (): JSX.Element => {
                         ),
                     )
                 ) : (
-                    <div className="w-screen h-screen flex items-center justify-center">
+                    <div className="w-[800px] h-screen flex items-center justify-center">
                         <Spinner />
                     </div>
                 )}
