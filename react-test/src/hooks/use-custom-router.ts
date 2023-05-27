@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface IUseCustomRouter {
@@ -9,21 +10,25 @@ interface IUseCustomRouter {
 export const useCustomRouter = (): IUseCustomRouter => {
     const navigate = useNavigate();
 
-    const toAddPage = () => {
+    const toAddPage = useCallback(() => {
         navigate('/add');
-    };
+    }, [navigate]);
 
-    const toLoginPage = () => {
+    const toLoginPage = useCallback(() => {
         navigate('/login');
-    };
+    }, [navigate]);
 
-    const toEditPage = () => {
+    const toEditPage = useCallback(() => {
         navigate('/edit');
-    };
+    }, [navigate]);
 
-    const toHomePage = () => {
+    useCallback(() => {
         navigate('/');
-    };
+    }, [navigate]);
+
+    const toHomePage = useCallback(() => {
+        navigate('/');
+    }, [navigate]);
 
     return {
         toAddPage,
