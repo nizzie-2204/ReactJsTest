@@ -15,7 +15,7 @@ interface IPhoneManager {
     editPhone: (id: string, phone: Partial<IPhone>) => void;
     removePhone: (id: string) => void;
     fetchPhones: () => void;
-    setSelectedPhone: (isSet: boolean, phone: IPhone) => void;
+    setSelectedPhone: (isSet: boolean, phone?: IPhone) => void;
 }
 export const usePhoneManager = (): IPhoneManager => {
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export const usePhoneManager = (): IPhoneManager => {
     );
 
     const setSelectedPhone = useCallback(
-        (isSet: boolean, phone: IPhone) => {
+        (isSet: boolean, phone?: IPhone) => {
             dispatch(
                 setSelectedPhoneSlice({
                     isSet: isSet,

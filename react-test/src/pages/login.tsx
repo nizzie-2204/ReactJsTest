@@ -8,8 +8,8 @@ import { useCustomRouter } from '../hooks/use-custom-router';
 const Login = (): JSX.Element => {
     const { toHomePage } = useCustomRouter();
     const [input, setInput] = useState({
-        email: '',
-        password: '',
+        email: 'sample@gmail.com',
+        password: '123',
     });
 
     const handleSubmit = useCallback(

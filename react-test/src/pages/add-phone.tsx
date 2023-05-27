@@ -1,18 +1,19 @@
-import React, { ChangeEvent, FormEvent, JSX, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FormEvent, JSX, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { Button } from '../components/button';
 import { FormWrapper } from '../components/form-wrapper';
 import { IPhone } from '../features/phone/phone-slice';
-import { selectedPhoneSlice } from '../features/phone/selected-phone-slice';
 import withAuthenticated from '../hocs/with-authenticated';
+import { useCustomRouter } from '../hooks/use-custom-router';
 import { usePhoneManager } from '../manager/use-phone-manager';
 import { convertFileToBase64 } from '../utils/convert-file-to-base64';
 
 const AddPhone = (): JSX.Element => {
     const { addPhone, editPhone } = usePhoneManager();
     const location = useLocation();
+    const { toHomePage } = useCustomRouter();
     const [activeState, setActiveState] = useState<'edit' | 'add'>('add');
     const selectedPhone = useSelector((state: { selectedPhone: IPhone | '' }) => state.selectedPhone);
     const [previewImg, setPreviewImg] = useState('');
@@ -64,8 +65,9 @@ const AddPhone = (): JSX.Element => {
                   });
 
             setInput(initialInput);
+            toHomePage();
         },
-        [activeState, addPhone, editPhone, initialInput, input, selectedPhone],
+        [activeState, addPhone, editPhone, initialInput, input, selectedPhone, toHomePage],
     );
 
     return (
@@ -79,7 +81,6 @@ const AddPhone = (): JSX.Element => {
                         type="text"
                         id="name"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                        placeholder="sample@gmail.com"
                         required
                         value={input.name}
                         onChange={(e) =>
@@ -97,7 +98,6 @@ const AddPhone = (): JSX.Element => {
                         type="number"
                         id="yearOfManufacture"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                        placeholder="sample@gmail.com"
                         required
                         value={input.yearOfManufacture}
                         onChange={(e) =>
@@ -115,7 +115,6 @@ const AddPhone = (): JSX.Element => {
                         type="number"
                         id="price"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                        placeholder="sample@gmail.com"
                         required
                         value={input.price}
                         onChange={(e) =>
@@ -133,7 +132,6 @@ const AddPhone = (): JSX.Element => {
                         type="text"
                         id="desc"
                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                        placeholder="sample@gmail.com"
                         required
                         value={input.desc}
                         onChange={(e) =>
